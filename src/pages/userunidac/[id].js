@@ -12,8 +12,8 @@ import { cpf } from "cpf-cnpj-validator";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
-import pt from "date-fns/locale/pt-BR"; // the locale you want
-registerLocale("pt-BR", pt); // register it with the name you want
+import pt from "date-fns/locale/pt-BR"; 
+registerLocale("pt-BR", pt); 
 
 export default function User() {
   const { query: { id }, push } = useRouter();
@@ -43,7 +43,7 @@ export default function User() {
     const { value, name } = event.target;
     let teste = value.replace("_", "")
     if (name == "cpf" && teste.length == 14 && !cpf.isValid(value)) {
-      toast.warn("Cpf Inválido");
+      toast.warn("Invalid Cpf");
       setForm({
         ...form,
         [name]: "",
@@ -69,14 +69,14 @@ export default function User() {
     let data = value.split('/')
     //dia
     if (parseInt(data[0]) < 1 || parseInt(data[0]) > 31) {
-      alert("dia erro");
+      alert("day error");
     }
     //mês
     if (parseInt(data[1]) < 1 || parseInt(data[1]) > 12) {
-      alert("mês erro");
+      alert("month error");
     }//ano
     if (parseInt(data[2]) < 1900 || parseInt(data[0]) > new Date().getFullYear()) {
-      alert("ano erro");
+      alert("year error");
     }
 
   };
@@ -102,9 +102,6 @@ export default function User() {
       birthday,
     };
     
-
-
-
     try {
       if (isNewUser) {
         await axios.post('/userunidac', formData);
